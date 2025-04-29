@@ -18,10 +18,10 @@ public class NinjaModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
+    @Column(unique = true)
     private String email;
     private int age;
     @ManyToOne
     @JoinColumn(name = "missions_id")
     private MissionModel missions;
-
 }
