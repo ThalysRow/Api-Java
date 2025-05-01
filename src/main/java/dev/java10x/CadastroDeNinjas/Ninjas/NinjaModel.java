@@ -16,11 +16,18 @@ import java.util.UUID;
 public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ninja_id")
     private UUID id;
+
+    @Column(name = "name")
     private String name;
-    @Column(unique = true)
+
+    @Column(name = "e-mail", unique = true)
     private String email;
+
+    @Column(name = "age")
     private int age;
+
     @ManyToOne
     @JoinColumn(name = "missions_id")
     private MissionModel missions;
