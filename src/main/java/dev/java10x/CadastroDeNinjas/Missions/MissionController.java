@@ -3,7 +3,7 @@ package dev.java10x.CadastroDeNinjas.Missions;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("mission")
+@RequestMapping("/mission")
 public class MissionController {
 
     @PostMapping("/add")
