@@ -26,4 +26,11 @@ public class NinjaServices {
     public NinjaModel addNinja(NinjaModel ninja){
         return ninjaRepository.save(ninja);
     }
+
+    public void deleteNinja(UUID id){
+        if(!ninjaRepository.existsById(id)){
+            throw new RuntimeException("Ninja not found");
+        }
+        ninjaRepository.deleteById(id);
+    }
 }

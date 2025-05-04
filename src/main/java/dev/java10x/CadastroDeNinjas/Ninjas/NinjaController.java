@@ -37,4 +37,14 @@ public class NinjaController {
     public List<NinjaModel> showNinjas(){
         return ninjaServices.NinjaList();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteNinja(@PathVariable UUID id){
+        try {
+            ninjaServices.deleteNinja(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Ninja deleted");
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }
