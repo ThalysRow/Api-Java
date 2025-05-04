@@ -2,32 +2,20 @@ package dev.java10x.CadastroDeNinjas.Missions;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/mission")
 public class MissionController {
 
-    @PostMapping("/add")
-    public String addMission(){
-        return "New Mission";
-    }
+    public MissionServices missionServices;
 
-    @GetMapping("/ID")
-    public String showMission(){
-        return "Mission";
+    public MissionController(MissionServices missionServices) {
+        this.missionServices = missionServices;
     }
 
     @GetMapping("/all")
-    public String ShowMissions(){
-        return "Missions";
-    }
-
-    @PutMapping("/ID")
-    public String updateMission(){
-        return "Update Mission";
-    }
-
-    @DeleteMapping("/ID")
-    public String deleteMission(){
-        return "Delete Mission";
+    public List<MissionModel> ShowMissions(){
+        return missionServices.missionList();
     }
 }
