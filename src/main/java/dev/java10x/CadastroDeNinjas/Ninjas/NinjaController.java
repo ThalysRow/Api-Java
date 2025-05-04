@@ -17,13 +17,8 @@ public class NinjaController {
         this.ninjaServices = ninjaServices;
     }
 
-    @PostMapping("/add")
-    public String addNinja(){
-        return "Created Ninja";
-    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<?> showNinja(@PathVariable UUID id){
+    public ResponseEntity<Object> showNinja(@PathVariable UUID id){
        try {
            NinjaModel ninja = ninjaServices.findByID(id);
            return ResponseEntity.ok(ninja);
@@ -35,15 +30,5 @@ public class NinjaController {
     @GetMapping("/all")
     public List<NinjaModel> showNinjas(){
         return ninjaServices.NinjaList();
-    }
-
-    @PutMapping("/ID")
-    public String NinjaUpdate(){
-        return "Ninja Update";
-    }
-
-    @DeleteMapping("/ID")
-    public String NinjaDelete(){
-        return "Ninja Delete";
     }
 }
