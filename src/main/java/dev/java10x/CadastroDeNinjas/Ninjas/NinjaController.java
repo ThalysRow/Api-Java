@@ -27,6 +27,12 @@ public class NinjaController {
        }
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<NinjaModel> createNinja(@RequestBody NinjaModel ninja){
+        NinjaModel saveNinja = ninjaServices.addNinja(ninja);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saveNinja);
+    }
+
     @GetMapping("/all")
     public List<NinjaModel> showNinjas(){
         return ninjaServices.NinjaList();
