@@ -47,4 +47,14 @@ public class NinjaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateNinja(@PathVariable UUID id, @RequestBody NinjaModel ninja){
+        try {
+            NinjaModel ninjaUpdated = ninjaServices.updateNinja(id, ninja);
+            return ResponseEntity.ok(ninjaUpdated);
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }
