@@ -20,7 +20,7 @@ public class NinjaController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> showNinja(@PathVariable UUID id){
        try {
-           NinjaModel ninja = ninjaServices.findByID(id);
+           NinjaDTO ninja = ninjaServices.findByID(id);
            return ResponseEntity.ok(ninja);
        }catch (RuntimeException e){
            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -28,13 +28,13 @@ public class NinjaController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<NinjaModel> createNinja(@RequestBody NinjaModel ninja){
-        NinjaModel saveNinja = ninjaServices.addNinja(ninja);
+    public ResponseEntity<NinjaDTO> createNinja(@RequestBody NinjaDTO ninja){
+        NinjaDTO saveNinja = ninjaServices.addNinja(ninja);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveNinja);
     }
 
     @GetMapping("/all")
-    public List<NinjaModel> showNinjas(){
+    public List<NinjaDTO> showNinjas(){
         return ninjaServices.NinjaList();
     }
 
@@ -49,9 +49,9 @@ public class NinjaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateNinja(@PathVariable UUID id, @RequestBody NinjaModel ninja){
+    public ResponseEntity<Object> updateNinja(@PathVariable UUID id, @RequestBody NinjaDTO ninja){
         try {
-            NinjaModel ninjaUpdated = ninjaServices.updateNinja(id, ninja);
+            NinjaDTO ninjaUpdated = ninjaServices.updateNinja(id, ninja);
             return ResponseEntity.ok(ninjaUpdated);
         } catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
