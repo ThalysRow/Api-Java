@@ -31,4 +31,7 @@ public class NinjaModel {
     @ManyToOne
     @JoinColumn(name = "missions_id")
     private MissionModel missions;
+
+    @Column(name = "rank")
+    private String rank;
 }
